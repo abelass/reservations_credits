@@ -1,0 +1,35 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_reservation_credit,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_reservation_credit' value='#ENV{id_reservation_credit}' />
+		<ul>
+
+			[(#SAISIE{input, id_detail_reservation, obligatoire=oui,
+				label=<:reservation_credit:champ_id_detail_reservation_label:>})]
+
+			[(#SAISIE{auteurs, id_auteur,
+				label=<:reservation_credit:champ_id_auteur_label:>})]
+
+			[(#SAISIE{input, email,
+				label=<:reservation_credit:champ_email_label:>})]
+
+			[(#SAISIE{textarea, descriptif,
+				label=<:reservation_credit:champ_descriptif_label:>})]
+
+			[(#SAISIE{input, montant, obligatoire=oui,
+				label=<:reservation_credit:champ_montant_label:>})]
+
+			[(#SAISIE{date, date_creation, obligatoire=oui,
+				label=<:reservation_credit:champ_date_creation_label:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>
