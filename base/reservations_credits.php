@@ -54,15 +54,14 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "maj" => "TIMESTAMP"
     ),
     'key' => array(
-      "PRIMARY KEY" => "id_reservation_credit",
-      "KEY id_reservations_detail" => "id_reservations_detail",
+      "PRIMARY KEY" => "id_reservation_credit,id_reservations_detail",
       "KEY id_auteur" => "id_auteur",
       "KEY email" => "email",
       ),
 
     'titre' => "'' AS titre, '' AS lang",
     'champs_editables' => array(
-      'id_detail_reservation',
+      'id_reservations_detail',
       'id_auteur',
       'email',
       'descriptif',
