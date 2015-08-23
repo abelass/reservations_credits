@@ -104,7 +104,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "KEY email" => "email",
       ),
     'titre' => "email AS titre, '' AS lang",
-    #'date' => "",
+    'date' => "date_creation",
     'champs_editables' => array(
       'email',
       'credit'
