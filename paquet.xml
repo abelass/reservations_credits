@@ -8,10 +8,6 @@
 	documentation=""
 	schema="1.0.0" 
 >
-	<!--
-		Paquet genere le 2015-08-16 13:10:59
-		(Vous pouvez bien entendu supprimer ces commentaires) 
-	-->
 
 	<nom>Réseŕvations Crédits</nom>
 
@@ -46,7 +42,6 @@
 
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/reservations_credits.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/reservations_credits.php" /> 
-	<pipeline nom="affiche_auteurs_interventions" inclure="reservations_credits_pipelines.php" /> 
 	<pipeline nom="post_edition" inclure="reservations_credits_pipelines.php" /> 
 
 	<menu nom="reservation_credit_creer" titre="reservation_credit:icone_creer_reservation_credit" parent="outils_rapides" icone="images/reservation_credit-new-16.png" action="reservation_credit_edit" parametres="new=oui" /> 

@@ -72,22 +72,3 @@ function reservations_credits_post_edition($flux) {
   }
   return $flux;
 }
-
-/**
- * Ajout de liste sur la vue d'un auteur
- *
- * @pipeline affiche_auteurs_interventions
- * @param  array $flux Données du pipeline
- * @return array       Données du pipeline
- */
-function reservations_credits_affiche_auteurs_interventions($flux) {
-  if ($id_auteur = intval($flux['args']['id_auteur'])) {
-
-    $flux['data'] .= recuperer_fond('prive/objets/liste/reservation_credits', array(
-      'id_auteur' => $id_auteur,
-      'titre' => _T('reservation_credit:info_reservation_credits_auteur')
-    ), array('ajax' => true));
-
-  }
-  return $flux;
-}
