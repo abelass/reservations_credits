@@ -30,6 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_changer_statut_reservation_credit' => 'Ce crédit est :',
 	'texte_creer_associer_reservation_credit' => 'Créer et associer un crédit',
 	'texte_definir_comme_traduction_reservation_credit' => 'Ce crédit est une traduction du crédit numéro :',
+	'texte_statut_annule' => 'annulé',
 	'titre_langue_reservation_credit' => 'Langue de ce crédit',
 	'titre_logo_reservation_credit' => 'Logo de ce crédit',
 	'titre_reservation_credit' => 'Crédit',
