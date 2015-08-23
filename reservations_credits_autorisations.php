@@ -36,9 +36,99 @@ function autoriser_configurer_reservations_credits_dist($faire, $type, $id, $qui
 */
 
 // -----------------
+// Objet reservation_credit_mouvements
+
+
+
+
+/**
+ * Autorisation de voir le bouton d'accès rapide de création (reservationcreditmouvement)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcreditmouvementcreer_menu_dist($faire, $type, $id, $qui, $opt){
+	return autoriser('creer', 'reservation_credit_mouvement', '', $qui, $opt);
+} 
+
+/**
+ * Autorisation de créer (reservationcreditmouvement)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcreditmouvement_creer_dist($faire, $type, $id, $qui, $opt) {
+	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+}
+
+/**
+ * Autorisation de voir (reservationcreditmouvement)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcreditmouvement_voir_dist($faire, $type, $id, $qui, $opt) {
+	return true;
+}
+
+/**
+ * Autorisation de modifier (reservationcreditmouvement)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcreditmouvement_modifier_dist($faire, $type, $id, $qui, $opt) {
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
+}
+
+/**
+ * Autorisation de supprimer (reservationcreditmouvement)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcreditmouvement_supprimer_dist($faire, $type, $id, $qui, $opt) {
+	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+}
+
+
+// -----------------
 // Objet reservation_credits
 
 
+/**
+ * Autorisation de voir un élément de menu (reservationcredits)
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_reservationcredits_menu_dist($faire, $type, $id, $qui, $opt){
+	return true;
+} 
 
 
 /**

@@ -8,23 +8,8 @@
 		<input type='hidden' name='id_reservation_credit' value='#ENV{id_reservation_credit}' />
 		<ul>
 
-			[(#SAISIE{input, id_detail_reservation, obligatoire=oui,
-				label=<:reservation_credit:champ_id_detail_reservation_label:>})]
-
-			[(#SAISIE{auteurs, id_auteur,
-				label=<:reservation_credit:champ_id_auteur_label:>})]
-
-			[(#SAISIE{input, email,
+			[(#SAISIE{input, email, obligatoire=oui,
 				label=<:reservation_credit:champ_email_label:>})]
-
-			[(#SAISIE{textarea, descriptif,
-				label=<:reservation_credit:champ_descriptif_label:>})]
-
-			[(#SAISIE{input, montant, obligatoire=oui,
-				label=<:reservation_credit:champ_montant_label:>})]
-
-			[(#SAISIE{date, date_creation, obligatoire=oui,
-				label=<:reservation_credit:champ_date_creation_label:>})]
 
 		</ul>
 		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

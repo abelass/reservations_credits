@@ -87,25 +87,7 @@ function formulaires_editer_reservation_credit_charger_dist($id_reservation_cred
  */
 function formulaires_editer_reservation_credit_verifier_dist($id_reservation_credit='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 
-	$erreurs = array();
-	$verifier = charger_fonction('verifier', 'inc');
-
-	foreach (array('date_creation') AS $champ){
-		$normaliser = null;
-		if ($erreur = $verifier(_request($champ), 'date', array('normaliser'=>'datetime'), $normaliser)) {
-			$erreurs[$champ] = $erreur;
-		// si une valeur de normalisation a ete transmis, la prendre.
-		} elseif (!is_null($normaliser)) {
-			set_request($champ, $normaliser);
-		// si pas de normalisation ET pas de date soumise, il ne faut pas tenter d'enregistrer ''
-		} else {
-			set_request($champ, null);
-		}
-	}
-
-	$erreurs += formulaires_editer_objet_verifier('reservation_credit',$id_reservation_credit, array('id_detail_reservation', 'montant', 'date_creation'));
-
-	return $erreurs;
+	return formulaires_editer_objet_verifier('reservation_credit',$id_reservation_credit, array('email'));
 
 }
 

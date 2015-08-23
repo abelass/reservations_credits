@@ -49,7 +49,7 @@ function reservations_credits_upgrade($nom_meta_base_version, $version_cible) {
 	# );
 	# ...
 
-	$maj['create'] = array(array('maj_tables', array('spip_reservation_credits')));
+	$maj['create'] = array(array('maj_tables', array('spip_reservation_credit_mouvements', 'spip_reservation_credits')));
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -74,12 +74,13 @@ function reservations_credits_vider_tables($nom_meta_base_version) {
 	# sql_drop_table("spip_xx");
 	# sql_drop_table("spip_xx_liens");
 
-	sql_drop_table("reservation_credits");
+	sql_drop_table("spip_reservation_credit_mouvements");
+	sql_drop_table("spip_reservation_credits");
 
 	# Nettoyer les versionnages et forums
-	sql_delete("spip_versions",              sql_in("objet", array('reservation_credit')));
-	sql_delete("spip_versions_fragments",    sql_in("objet", array('reservation_credit')));
-	sql_delete("spip_forum",                 sql_in("objet", array('reservation_credit')));
+	sql_delete("spip_versions",              sql_in("objet", array('reservation_credit_mouvement', 'reservation_credit')));
+	sql_delete("spip_versions_fragments",    sql_in("objet", array('reservation_credit_mouvement', 'reservation_credit')));
+	sql_delete("spip_forum",                 sql_in("objet", array('reservation_credit_mouvement', 'reservation_credit')));
 
 	effacer_meta($nom_meta_base_version);
 }

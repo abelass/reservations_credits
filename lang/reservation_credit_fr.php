@@ -10,12 +10,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_lien_reservation_credit' => 'Ajouter ce crédit',
 
 	// C
-	'champ_date_creation_label' => 'Date création',
-	'champ_descriptif_label' => 'Déscriptif',
-	'champ_email_label' => 'Email',
-	'champ_id_auteur_label' => 'ID Auteur',
-	'champ_id_detail_reservation_label' => 'ID Détail Réservation',
-	'champ_montant_label' => 'Montant',
+	'champ_credit_label' => 'Crédit',
+	'champ_email_label' => 'email',
 
 	// I
 	'icone_creer_reservation_credit' => 'Créer un crédit',
@@ -34,7 +30,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_changer_statut_reservation_credit' => 'Ce crédit est :',
 	'texte_creer_associer_reservation_credit' => 'Créer et associer un crédit',
 	'texte_definir_comme_traduction_reservation_credit' => 'Ce crédit est une traduction du crédit numéro :',
-	'texte_statut_annule' => 'annulé',
 	'titre_langue_reservation_credit' => 'Langue de ce crédit',
 	'titre_logo_reservation_credit' => 'Logo de ce crédit',
 	'titre_reservation_credit' => 'Crédit',
