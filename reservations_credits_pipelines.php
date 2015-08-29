@@ -40,16 +40,22 @@ function reservations_credits_post_edition($flux) {
     if ($type = _request('instituer_credit_mouvement')) {
       set_request('type',$type);
       $action = charger_fonction('editer_objet', 'action');
-      $sql = sql_select('id_reservations_detail, id_auteur, email, prix_ht, prix, taxe,descriptif',
+      if (test_plugin_actif('prix_objets')) 
+         $sql = sql_select('id_reservations_detail, id_auteur, email, spip_reservations_details.prix_ht, spip_reservations_details.prix, spip_reservations_details.taxe,descriptif,code_devise',
+        'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation) LEFT JOIN spip_prix_objets USING (id_prix_objet)',
+        'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');       
+      else
+        $sql = sql_select('id_reservations_detail, id_auteur, email, prix_ht, prix, taxe,descriptif',
         'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation)',
         'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
+        
       $date = date('Y-m-d H:i:s');
+      
       while($data = sql_fetch($sql)) {
-        if (isset($data['id_auteur']) AND $email = sql_getfetsel('email','spip_auteurs','id_auteur =' . $data['id_auteur'])){
-        }
+        if (isset($data['id_auteur']) AND $email = sql_getfetsel('email','spip_auteurs','id_auteur =' . $data['id_auteur'])) {}
         else
          $email = $data['email'];
-         
+        if (isset($data['code_devise'])) set_request('devise',$data['code_devise']);
         set_request('email',$email ) ;
         set_request('id_reservations_detail',$data['id_reservations_detail']) ;
         set_request('descriptif',_T('reservation_credit_mouvement:_mouvement_descriptif',array('titre'=>$data['descriptif'])));
@@ -69,6 +75,24 @@ function reservations_credits_post_edition($flux) {
         $action('new', 'reservation_credit_mouvement');
       }
     }
+  }
+  return $flux;
+}
+
+/**
+ * Permet d’ajouter du contenu dans la colonne « gauche » des pages de l’espace privé.
+ *
+ * @pipeline affiche_gauche
+ * @param  array $flux Données du pipeline
+ * @return array       Données du pipeline
+ */
+function reservations_credits_affiche_gauche($flux) {
+    $exec = $flux["args"]["exec"];
+  // reservations sur les evenements
+  if ($exec == 'client') {
+    $contexte = calculer_contexte();
+    $data .= recuperer_fond('prive/gauche/credit', $contexte);
+    $flux['data'] .= $data;
   }
   return $flux;
 }
