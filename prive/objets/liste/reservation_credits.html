@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_reservation_credits(RESERVATION_CREDITS){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num email},#GET{defaut_tri}}{par email}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_reservation_credits(RESERVATION_CREDITS){id_mot?}{email?}{where?}{recherche?}{tri #ENV{par,num email},#GET{defaut_tri}}{par email}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{reservation_credit-16.png}|balise_img)]</td>
 			<td class='email principale'>[(#LOGO_RESERVATION_CREDIT|image_reduire{20,26})]<a href="[(#ID_RESERVATION_CREDIT|generer_url_entite{reservation_credit})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RESERVATION_CREDIT">[(#RANG). ]#EMAIL</a></td>
