@@ -1,49 +1,43 @@
 <paquet
-	prefix="reservations_credits"
-	categorie="date"
-	version="1.0.1"
-	etat="dev"
-	compatibilite="[3.0.20;3.0.*]"
-	logo="prive/themes/spip/images/reservations_credits-64.png"
-	documentation=""
-	schema="1.0.0" 
+  prefix="reservations_credits"
+  categorie="date"
+  version="1.0.1"
+  etat="dev"
+  compatibilite="[3.0.20;3.0.*]"
+  logo="prive/themes/spip/images/reservations_credits-64.png"
+  documentation=""
+  schema="1.0.0"
 >
 
-	<nom>Réseŕvations Crédits</nom>
+  <nom>Réseŕvations Crédits</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
-	<auteur>Rainer</auteur>
+  <auteur>Rainer</auteur>
+  <licence>GNU/GPL</licence>
 
-	<licence>GNU/GPL</licence>
-
-	<!--
-		Exemple de commandes
-		* dependances
-		<necessite nom="saisies" compatibilite="[1.21.0;]" />
-		<utilise nom="saisies" compatibilite="[1.21.0;]" />
-		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
-		* pipelines
-		<pipeline nom="autoriser" inclure="reservations_credits_autorisations.php" />
-		<pipeline nom="insert_head" inclure="reservations_credits_pipelines.php" />
-		* declarer un pipeline 
-		<pipeline nom="mon_pipeline" action="" />
-		* parents de menus de SPIP :
-				menu_accueil (A eviter), menu_edition, menu_publication,
-				menu_activite, menu_squelette, menu_administration, menu_configuration 
-		<menu nom="reservations_credits" titre="reservations_credits:reservations_credits_titre" parent="menu_edition"  icone="images/reservations_credits-16.png" />
-		* parents d'onglets... configuration, plugins, statistiques, ... 
-		<onglet nom="reservations_credits" titre="reservations_credits:reservations_credits_titre" parent="configuration" icone="images/reservations_credits-24.png" />
-	-->
-
-	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
-	<necessite nom="verifier" compatibilite="[1.0.0;]" />
-	<necessite nom="reservation_evenement" compatibilite="[1.20.3;]" />	
-
-	<pipeline nom="autoriser" inclure="reservations_credits_autorisations.php" /> 
-
-	<pipeline nom="declarer_tables_objets_sql" inclure="base/reservations_credits.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/reservations_credits.php" /> 
-	<pipeline nom="post_edition" inclure="reservations_credits_pipelines.php" /> 
-
-	<menu nom="reservation_credit_creer" titre="reservation_credit:icone_creer_reservation_credit" parent="outils_rapides" icone="images/reservation_credit-new-16.png" action="reservation_credit_edit" parametres="new=oui" /> 
+  <!--
+  Exemple de commandes
+  * dependances
+  <necessite nom="saisies" compatibilite="[1.21.0;]" />
+  <utilise nom="saisies" compatibilite="[1.21.0;]" />
+  <lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
+  * pipelines
+  <pipeline nom="autoriser" inclure="reservations_credits_autorisations.php" />
+  <pipeline nom="insert_head" inclure="reservations_credits_pipelines.php" />
+  * declarer un pipeline
+  <pipeline nom="mon_pipeline" action="" />
+  * parents de menus de SPIP :
+  menu_accueil (A eviter), menu_edition, menu_publication,
+  menu_activite, menu_squelette, menu_administration, menu_configuration
+  <menu nom="reservations_credits" titre="reservations_credits:reservations_credits_titre" parent="menu_edition"  icone="images/reservations_credits-16.png" />
+  * parents d'onglets... configuration, plugins, statistiques, ...
+  <onglet nom="reservations_credits" titre="reservations_credits:reservations_credits_titre" parent="configuration" icone="images/reservations_credits-24.png" />
+  -->
+  <necessite nom="saisies"  compatibilite="[1.24.0;]" />
+  <necessite nom="verifier" compatibilite="[1.0.0;]" />
+  <necessite nom="reservation_evenement" compatibilite="[1.20.3;]" />
+  <pipeline nom="autoriser" inclure="reservations_credits_autorisations.php" />
+  <pipeline nom="declarer_tables_objets_sql" inclure="base/reservations_credits.php" />
+  <pipeline nom="declarer_tables_interfaces" inclure="base/reservations_credits.php" />
+  <pipeline nom="post_edition" inclure="reservations_credits_pipelines.php" />
+  <menu nom="reservation_credit_creer" titre="reservation_credit:icone_creer_reservation_credit" parent="outils_rapides" icone="images/reservation_credit-new-16.png" action="reservation_credit_edit" parametres="new=oui" />
 </paquet>
