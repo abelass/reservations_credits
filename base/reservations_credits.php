@@ -51,6 +51,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "descriptif" => "text NOT NULL DEFAULT ''",
       "type" => "varchar(6) NOT NULL DEFAULT ''",
       "montant" => "float NOT NULL DEFAULT '0'",
+      "devise" => "varchar(3) NOT NULL DEFAULT ''",    
       "date_creation" => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
       "maj" => "TIMESTAMP"
     ),
@@ -68,7 +69,8 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       'descriptif',
       'type',
       'montant',
-      'date_creation'
+      'date_creation',
+      'devise'
     ),
     'champs_versionnes' => array(
       'id_reservations_detail',
@@ -76,7 +78,8 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       'descriptif',
       'type',
       'montant',
-      'date_creation'
+      'date_creation',
+      'devise'
     ),
     'rechercher_champs' => array(
       "type" => 1,
@@ -95,7 +98,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
     'field' => array(
       "id_reservation_credit" => "bigint(21) NOT NULL",
       "email" => "varchar(255) NOT NULL DEFAULT ''",
-      "credit" => "float",
+      "credit" => "varchar(255) NOT NULL DEFAULT ''",
       "date_creation" => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
       "maj" => "TIMESTAMP"
     ),
