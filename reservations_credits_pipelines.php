@@ -96,3 +96,19 @@ function reservations_credits_affiche_gauche($flux) {
   }
   return $flux;
 }
+
+/**
+ * Permet d’ajouter du contenu dans le menu admin du plugin réservation.
+ *
+ * @pipeline affiche_gauche
+ * @param  array $flux Données du pipeline
+ * @return array       Données du pipeline
+ */
+function reservations_credits_reservation_evenement_menu_admin($flux) {
+  // reservations sur les evenements
+    $contexte = calculer_contexte();
+    $data .= recuperer_fond('prive/gauche/menu_admin_credit', $contexte);
+    $flux['data'] .= $data;
+  
+  return $flux;
+}

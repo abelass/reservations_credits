@@ -41,6 +41,7 @@
   <pipeline nom="declarer_tables_objets_sql" inclure="base/reservations_credits.php" />
   <pipeline nom="declarer_tables_interfaces" inclure="base/reservations_credits.php" />
   <pipeline nom="post_edition" inclure="reservations_credits_pipelines.php" />
+  <pipeline nom="reservation_evenement_menu_admin" inclure="reservations_credits_pipelines.php" />
   
   <menu nom="reservation_credit_creer" titre="reservation_credit:icone_creer_reservation_credit" parent="outils_rapides" icone="images/reservation_credit-new-16.png" action="reservation_credit_edit" parametres="new=oui" />
 </paquet>
