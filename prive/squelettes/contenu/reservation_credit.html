@@ -38,6 +38,14 @@
 #PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,reservation_credit,id,#ID_RESERVATION_CREDIT},data,'<div class="nettoyeur"></div>'}}
 
 #BOITE_FERMER
+
+<INCLURE{fond=prive/objets/liste/reservation_credit_mouvements,id_reservation_credit,par=id_reservation_credit_mouvement,env}/>
+
+
+[(#AUTORISER{creer,reservationcreditmouvement})
+    [(#URL_ECRIRE{reservation_credit_mouvement_edit,new=oui&id_reservation_credit=#ID_RESERVATION_CREDIT}|icone_verticale{<:reservation_credit_mouvement:icone_creer_reservation_credit_mouvement:>,reservation_credit_mouvement,new,right})]
+]
+
 [(#EVAL{_AJAX}|oui)
   <script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
 ]
