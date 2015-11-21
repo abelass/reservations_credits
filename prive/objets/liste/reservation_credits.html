@@ -10,7 +10,8 @@
   <thead>
     <tr class='first_row'>
       <th class='picto' scope='col'></th>
-      <th class='email' scope='col'>[(#TRI{email,<:reservation_credit:champ_email_label:>,ajax})]</th>
+      <th class='email' scope='col'>[(#TRI{email,<:reservation:label_email:>,ajax})]</th>
+      <th class='montant' scope='col'><:reservation:montant:></th>      
       <th class='id' scope='col'>[(#TRI{id_reservation_credit,<:info_numero_abbreviation:>,ajax})]</th>
     </tr>
   </thead>
@@ -18,7 +19,13 @@
   <BOUCLE_liste_reservation_credits(RESERVATION_CREDITS){id_mot?}{email?}{where?}{recherche?}{tri #ENV{par,num email},#GET{defaut_tri}}{par email}{pagination #ENV{nb,10}}>
     <tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
       <td class='picto'>[(#CHEMIN_IMAGE{reservation_credit-16.png}|balise_img)]</td>
-      <td class='email principale'>[(#LOGO_RESERVATION_CREDIT|image_reduire{20,26})]<a href="[(#ID_RESERVATION_CREDIT|generer_url_entite{reservation_credit})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RESERVATION_CREDIT">[(#RANG). ]#EMAIL</a></td>
+      <td class='email principale'><a href="[(#ID_RESERVATION_CREDIT|generer_url_entite{reservation_credit})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RESERVATION_CREDIT">#EMAIL [ - (#EMAIL|infos_client{nom})]</a>
+      </td>
+      <td class='montant'>
+        <BOUCLE_montants(DATA){source tableau, #CREDIT|unserialize}>
+        [<div>(#VALEUR|prix_formater_devise{#CLE})</div>]
+        </BOUCLE_montants>
+      </td>
       <td class='id'>[(#AUTORISER{modifier,reservation_credit,#ID_RESERVATION_CREDIT}|?{
         <a href="[(#URL_ECRIRE{reservation_credit_edit,id_reservation_credit=#ID_RESERVATION_CREDIT})]">#ID_RESERVATION_CREDIT</a>,
         #ID_RESERVATION_CREDIT
