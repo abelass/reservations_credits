@@ -1,31 +1,31 @@
 [(#SET{defaut_tri,#ARRAY{
-	email,1, 
-	id_reservation_credit,1,
-	points,-1
+  email,1, 
+  id_reservation_credit,1,
+  points,-1
 }})]<B_liste_reservation_credits>
 #ANCRE_PAGINATION
 <div class="liste-objets reservation_credits">
 <table class='spip liste'>
-	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{reservation_credit:info_1_reservation_credit,reservation_credit:info_nb_reservation_credits}})</strong></caption>]
-	<thead>
-		<tr class='first_row'>
-			<th class='picto' scope='col'></th>
-			<th class='email' scope='col'>[(#TRI{email,<:reservation_credit:champ_email_label:>,ajax})]</th>
-			<th class='id' scope='col'>[(#TRI{id_reservation_credit,<:info_numero_abbreviation:>,ajax})]</th>
-		</tr>
-	</thead>
-	<tbody>
-	<BOUCLE_liste_reservation_credits(RESERVATION_CREDITS){id_mot?}{email?}{where?}{recherche?}{tri #ENV{par,num email},#GET{defaut_tri}}{par email}{pagination #ENV{nb,10}}>
-		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
-			<td class='picto'>[(#CHEMIN_IMAGE{reservation_credit-16.png}|balise_img)]</td>
-			<td class='email principale'>[(#LOGO_RESERVATION_CREDIT|image_reduire{20,26})]<a href="[(#ID_RESERVATION_CREDIT|generer_url_entite{reservation_credit})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RESERVATION_CREDIT">[(#RANG). ]#EMAIL</a></td>
-			<td class='id'>[(#AUTORISER{modifier,reservation_credit,#ID_RESERVATION_CREDIT}|?{
-				<a href="[(#URL_ECRIRE{reservation_credit_edit,id_reservation_credit=#ID_RESERVATION_CREDIT})]">#ID_RESERVATION_CREDIT</a>,
-				#ID_RESERVATION_CREDIT
-			})]</td>
-		</tr>
-	</BOUCLE_liste_reservation_credits>
-	</tbody>
+  [<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{reservation_credit:info_1_reservation_credit,reservation_credit:info_nb_reservation_credits}})</strong></caption>]
+  <thead>
+    <tr class='first_row'>
+      <th class='picto' scope='col'></th>
+      <th class='email' scope='col'>[(#TRI{email,<:reservation_credit:champ_email_label:>,ajax})]</th>
+      <th class='id' scope='col'>[(#TRI{id_reservation_credit,<:info_numero_abbreviation:>,ajax})]</th>
+    </tr>
+  </thead>
+  <tbody>
+  <BOUCLE_liste_reservation_credits(RESERVATION_CREDITS){id_mot?}{email?}{where?}{recherche?}{tri #ENV{par,num email},#GET{defaut_tri}}{par email}{pagination #ENV{nb,10}}>
+    <tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+      <td class='picto'>[(#CHEMIN_IMAGE{reservation_credit-16.png}|balise_img)]</td>
+      <td class='email principale'>[(#LOGO_RESERVATION_CREDIT|image_reduire{20,26})]<a href="[(#ID_RESERVATION_CREDIT|generer_url_entite{reservation_credit})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RESERVATION_CREDIT">[(#RANG). ]#EMAIL</a></td>
+      <td class='id'>[(#AUTORISER{modifier,reservation_credit,#ID_RESERVATION_CREDIT}|?{
+        <a href="[(#URL_ECRIRE{reservation_credit_edit,id_reservation_credit=#ID_RESERVATION_CREDIT})]">#ID_RESERVATION_CREDIT</a>,
+        #ID_RESERVATION_CREDIT
+      })]</td>
+    </tr>
+  </BOUCLE_liste_reservation_credits>
+  </tbody>
 </table>
 [<p class='pagination'>(#PAGINATION{prive})</p>]
 </div>
