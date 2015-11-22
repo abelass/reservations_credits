@@ -51,17 +51,17 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "descriptif" => "text NOT NULL DEFAULT ''",
       "type" => "varchar(6) NOT NULL DEFAULT ''",
       "montant" => "float NOT NULL DEFAULT '0'",
-      "devise" => "varchar(3) NOT NULL DEFAULT ''",    
+      "devise" => "varchar(3) NOT NULL DEFAULT ''",
       "date_creation" => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
       "maj" => "TIMESTAMP"
     ),
     'key' => array(
-      "PRIMARY KEY" => "id_reservation_credit_mouvement", 
+      "PRIMARY KEY" => "id_reservation_credit_mouvement",
       "KEY id_reservation_credit" => "id_reservation_credit",
       "KEY id_reservations_detail" => "id_reservations_detail",
       "KEY type" => "type",
       ),
-    'titre' => "'' AS titre, '' AS lang",
+    'titre' => "'descriptif' AS titre, '' AS lang",
     'date' => "date_creation",
     'champs_editables' => array(
       'id_reservation_credit',
