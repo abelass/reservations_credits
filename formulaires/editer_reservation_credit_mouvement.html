@@ -8,21 +8,24 @@
 		<input type='hidden' name='id_reservation_credit_mouvement' value='#ENV{id_reservation_credit_mouvement}' />
 		<ul>
 
-			[(#SAISIE{input, id_reservations_detail, obligatoire=oui,
-				label=<:reservation_credit_mouvement:champ_id_reservations_detail_label:>})]
+			[(#SAISIE{credits, id_reservation_credit,
+				label=<:reservation_credit_mouvement:champ_credit_de:>})]
 
-			[(#SAISIE{auteurs, reservation_credit,
-				label=<:reservation_credit_mouvement:champ_reservation_credit_label:>})]
-
-			[(#SAISIE{textarea, descriptif,
+			[(#SAISIE{textarea, descriptif,obligatoire=oui,
 				label=<:reservation_credit_mouvement:champ_descriptif_label:>})]
 
-			[(#SAISIE{checkbox, type, obligatoire=oui,
+			[(#SAISIE{radio, type, obligatoire=oui,
 				label=<:reservation_credit_mouvement:champ_type_label:>,
-				datas=[(#ARRAY{debit,&lt;:reservation_credit:type_debit:>,credit,&lt;:reservation_credit:type_credit:>})]})]
+				datas=[(#ARRAY{
+					credit,<:reservation_credit_mouvement:type_credit:>,
+					debit,<:reservation_credit_mouvement:type_debit:>,
+					})]})]
 
 			[(#SAISIE{input, montant, obligatoire=oui,
-				label=<:reservation_credit_mouvement:champ_montant_label:>})]
+				label=<:reservation:montant:>})]
+
+			[(#SAISIE{input, devise, obligatoire=oui,
+				label=<:reservation_credit_mouvement:champ_devise_label:>})]
 
 			[(#SAISIE{date, date_creation, obligatoire=oui,
 				label=<:reservation_credit_mouvement:champ_date_creation_label:>})]

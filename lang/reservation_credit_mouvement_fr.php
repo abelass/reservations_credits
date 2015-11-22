@@ -10,11 +10,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_lien_reservation_credit_mouvement' => 'Ajouter ce mouvement crédit',
 
 	// C
-	'champ_date_creation_label' => 'Date création',
-	'champ_descriptif_label' => 'Déscriptif',
-	'champ_id_reservations_detail_label' => 'ID Détail Réservation',
-	'champ_montant_label' => 'Montant',
-	'champ_reservation_credit_label' => 'ID réservation crédit',
+	'champ_date_creation_label' => 'Date création :',
+	'champ_descriptif_label' => 'Déscriptif :',
+	'champ_devise_label' => 'Devise :',
+	'champ_credit_de' => 'Crédit de :',
 	'champ_type_label' => 'Type',
 
 	// I

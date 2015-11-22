@@ -60,6 +60,7 @@ function formulaires_editer_reservation_credit_mouvement_identifier_dist($id_res
  */
 function formulaires_editer_reservation_credit_mouvement_charger_dist($id_reservation_credit_mouvement='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('reservation_credit_mouvement',$id_reservation_credit_mouvement,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+	$valeurs['_hidden'] = '<input type="hidden" name="id_reservations_detail" value="' .$valeurs['id_reservations_detail']. '"/>';
 	return $valeurs;
 }
 
@@ -103,7 +104,7 @@ function formulaires_editer_reservation_credit_mouvement_verifier_dist($id_reser
 		}
 	}
 
-	$erreurs += formulaires_editer_objet_verifier('reservation_credit_mouvement',$id_reservation_credit_mouvement, array('id_reservations_detail', 'type', 'montant', 'date_creation'));
+	$erreurs += formulaires_editer_objet_verifier('reservation_credit_mouvement',$id_reservation_credit_mouvement, array('type', 'montant', 'date_creation', 'devise', 'id_reservation_credit' ,'descriptif'));
 
 	return $erreurs;
 
