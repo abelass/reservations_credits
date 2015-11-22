@@ -61,7 +61,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "KEY id_reservations_detail" => "id_reservations_detail",
       "KEY type" => "type",
       ),
-    'titre' => "'descriptif' AS titre, '' AS lang",
+    'titre' => "descriptif AS titre, '' AS lang",
     'date' => "date_creation",
     'champs_editables' => array(
       'id_reservation_credit',
