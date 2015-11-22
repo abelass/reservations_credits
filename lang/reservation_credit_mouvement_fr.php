@@ -43,6 +43,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_reservation_credit_mouvement' => 'Mouvement crédit',
 	'titre_reservation_credit_mouvements' => 'Mouvements crédit',
 	'titre_reservation_credit_mouvements_rubrique' => 'Mouvements crédit de la rubrique',
+	'type_debit' => 'Débit',
+  'type_credit' => 'Crédit',
+
 );
 
 ?>
