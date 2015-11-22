@@ -28,49 +28,50 @@ function reservations_credits_post_edition($flux) {
   $table = $flux['args']['table'];
 
   if ($table == 'spip_evenements'){
-    
+    $statut_ancien = $flux['args']['statut_ancien'];
+    $statut = $flux['data']['statut'];
     // Si un événement publié est annulé
-    if($flux['args']['statut_ancien'] == 'publie' AND $flux['data']['statut'] == 'annule') 
+    if($statut_ancien == 'publie' AND $statut == 'annule')
       set_request('instituer_credit_mouvement','credit');
+
     // Ou si un événment annulé est republié
-    elseif($flux['args']['statut_ancien'] == 'annule' AND $flux['data']['statut'] == 'publie')
+    elseif($statut_ancien == 'annule' AND $statut == 'publie')
       set_request('instituer_credit_mouvement','debit');
-    
+
     // On crée les crédits pour chaque détail de réservation payé
     if ($type = _request('instituer_credit_mouvement')) {
       set_request('type',$type);
       $action = charger_fonction('editer_objet', 'action');
-      if (test_plugin_actif('prix_objets')) 
+      if (test_plugin_actif('prix_objets'))
          $sql = sql_select('id_reservations_detail, id_auteur, email, spip_reservations_details.prix_ht, spip_reservations_details.prix, spip_reservations_details.taxe,descriptif,code_devise',
         'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation) LEFT JOIN spip_prix_objets USING (id_prix_objet)',
-        'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');       
+        'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
       else
         $sql = sql_select('id_reservations_detail, id_auteur, email, prix_ht, prix, taxe,descriptif',
         'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation)',
         'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
-        
+
       $date = date('Y-m-d H:i:s');
-      
+
       while($data = sql_fetch($sql)) {
-        if (isset($data['id_auteur']) AND $email = sql_getfetsel('email','spip_auteurs','id_auteur =' . $data['id_auteur'])) {}
-        else
-         $email = $data['email'];
+        if (!isset($data['id_auteur']) OR !$email = sql_getfetsel('email','spip_auteurs','id_auteur =' . $data['id_auteur'])) $email = $data['email'];
+
         if (isset($data['code_devise'])) set_request('devise',$data['code_devise']);
         set_request('email',$email ) ;
         set_request('id_reservations_detail',$data['id_reservations_detail']) ;
-        set_request('descriptif',_T('reservation_credit_mouvement:_mouvement_descriptif',array('titre'=>$data['descriptif'])));
-        
+        set_request('descriptif',_T('reservation_credit_mouvement:mouvement_evenement_' . $statut,array('titre'=>$data['descriptif'])));
+
         // On établit le montant
         if ($data['prix'] > 0){
           set_request('montant',$data['prix']);
         }
         else {
           $montant = $data['prix_ht'] + $data['taxe'];
-          
+
           set_request('montant',$montant);
         }
         set_request('date_creation',$date);
-        
+
         // Création du crédit
         $action('new', 'reservation_credit_mouvement');
       }
@@ -109,6 +110,6 @@ function reservations_credits_reservation_evenement_menu_admin($flux) {
     $contexte = calculer_contexte();
     $data .= recuperer_fond('prive/gauche/menu_admin_credit', $contexte);
     $flux['data'] .= $data;
-  
+
   return $flux;
 }

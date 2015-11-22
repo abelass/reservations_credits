@@ -25,6 +25,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_nb_reservation_credit_mouvements' => '@nb@ mouvements crédit',
 	'info_reservation_credit_mouvements_auteur' => 'Les mouvements crédit de cet auteur',
 
+  // M
+  'mouvement_evenement_annule' => 'Anulation événement "@titre@"',
+  'mouvement_evenement_publie' => 'Reprogrammation événement "@titre@"',
+
 	// R
 	'retirer_lien_reservation_credit_mouvement' => 'Retirer ce mouvement crédit',
 	'retirer_tous_liens_reservation_credit_mouvements' => 'Retirer tous les mouvements crédit',
