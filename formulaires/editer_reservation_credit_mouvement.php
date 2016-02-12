@@ -59,7 +59,11 @@ function formulaires_editer_reservation_credit_mouvement_identifier_dist($id_res
  *     Environnement du formulaire
  */
 function formulaires_editer_reservation_credit_mouvement_charger_dist($id_reservation_credit_mouvement='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
+	include_spip('inc/config');
 	$valeurs = formulaires_editer_objet_charger('reservation_credit_mouvement',$id_reservation_credit_mouvement,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+
+	$devises = charger_fonction('reservations_devises','inc');
+	$valeurs['devises'] = $devises();
 	$valeurs['_hidden'] = '<input type="hidden" name="id_reservations_detail" value="' .$valeurs['id_reservations_detail']. '"/>';
 	return $valeurs;
 }

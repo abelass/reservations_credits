@@ -24,7 +24,9 @@
 			[(#SAISIE{input, montant, obligatoire=oui,
 				label=<:reservation:montant:>})]
 
-			[(#SAISIE{input, devise, obligatoire=oui,
+			[(#SAISIE{selection, devise, obligatoire=oui,
+				datas=#ENV*{devises},
+				cacher_option_intro = oui,
 				label=<:reservation_credit_mouvement:champ_devise_label:>})]
 
 			[(#SAISIE{date, date_creation, obligatoire=oui,
