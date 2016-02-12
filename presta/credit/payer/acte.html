@@ -1,0 +1,33 @@
+[(#REM)
+/*
+ * Paiement Bancaire
+ * module de paiement bancaire multi prestataires
+ * stockage des transactions
+ *
+ * Auteurs :
+ * Cedric Morin, Nursit.com
+ * (c) 2012-2015 - Distribue sous licence GNU/GPL
+ *
+ */
+]#CACHE{0}
+<BOUCLE_trans(TRANSACTIONS){id_transaction}{transaction_hash}>
+<div class="payer_mode payer_cheque payer_acte">
+	<p class="titre h4"><:bank:payer_par_cheque:></p>
+	[(#AUTORISER{encaissercheque,transaction,#ID_TRANSACTION}|et{#REM|test_espace_prive}|non)
+		#SET{ordre,#ENV{config/ordre,#NOM_SITE_SPIP}|wrap{'<b>'}}
+		#SET{montant,#MONTANT|affiche_monnaie|wrap{'<b>'}}
+		#SET{transaction,#ID_TRANSACTION|wrap{'<b>'}}
+		<:bank:info_cheque_imprimer{montant=#GET{montant},transaction=#GET{transaction},ordre=#GET{ordre}}|propre:>
+
+		<div class='boutons'>
+		[(#BOUTON_ACTION{<:bank:bouton_enregistrer_reglement_cheque:>,#ENV*{action}})]
+		</div>
+
+	]
+	[(#AUTORISER{encaissercheque,transaction,#ID_TRANSACTION}|et{#REM|test_espace_prive})
+		<div class="ajax">
+			#FORMULAIRE_ENCAISSER_REGLEMENT{#ID_TRANSACTION,#ENV{config}}
+		</div>
+	]
+</div>
+</BOUCLE_trans>

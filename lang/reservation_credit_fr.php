@@ -20,6 +20,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_nb_reservation_credits' => '@nb@ crédits',
 	'info_reservation_credits_auteur' => 'Les crédits de cet auteur',
 
+	// P
+	'payer_par_credit' => 'Payer par cheque',
+
 	// R
 	'retirer_lien_reservation_credit' => 'Retirer ce crédit',
 	'retirer_tous_liens_reservation_credits' => 'Retirer tous les crédits',
