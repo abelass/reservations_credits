@@ -19,6 +19,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_aucun_reservation_credit' => 'Aucun crédit',
 	'info_nb_reservation_credits' => '@nb@ crédits',
 	'info_reservation_credits_auteur' => 'Les crédits de cet auteur',
+	'info_virement' => 'Vous pouvez payer par virement bancaire.
+Les instructions concernant l’établissement du virement seront fournies après avoir cliqué sur ’Régler par virement bancaire’.
+
+Transaction : #@transaction@
+_ Montant : @montant@
+',
 
 	// P
 	'payer_par_credit' => 'Payer par cheque',
