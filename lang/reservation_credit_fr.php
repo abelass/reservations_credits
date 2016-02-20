@@ -27,7 +27,7 @@ _ Montant : @montant@
 ',
 
 	// P
-	'payer_par_credit' => 'Payer par cheque',
+	'payer_par_credit' => 'Payer avec crédit',
 
 	// R
 	'retirer_lien_reservation_credit' => 'Retirer ce crédit',
