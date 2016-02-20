@@ -24,7 +24,7 @@ function credit_client($credit='',$email='', $devise = '') {
 		$credit = unserialize($credit);
 	}
 	elseif($email) {
-		$credit = unserialize(sql_getfetsel('credit', 'spip_reservation_credits', 'email=' . sql_quote($email)));
+		$credit = unserialize(sql_getfetsel('credit', 'spip_reservation_credits', 'email LIKE "%' . $email . '%"'));
 	}
 	else {
 		return;
