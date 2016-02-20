@@ -12,12 +12,27 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 
-/*
- * Un fichier de fonctions permet de définir des éléments
- * systématiquement chargés lors du calcul des squelettes.
+/**
+ * Calcule les crédits du client
  *
- * Il peut par exemple définir des filtres, critères, balises, …
- * 
+ * @param  string $email L'email du client.
+ *
+ * @return mixed La valeur du champ ou un tableau avec tous les champs.
  */
+function credit_client($credit='',$email='', $devise = '') {
+	if ($credit) {
+		$credit = unserialize($credit);
+	}
+	elseif($email) {
+		$credit = unserialize(sql_getfetsel('credit', 'spip_reservation_credits', 'email=' . sql_quote($email)));
+	}
+	else {
+		return;
+	}
+	if ($devise AND isset($credit[$devise])) {
+		$credit = $credit[$devise];
+	}
+	return $credit;
+}
 
 ?>

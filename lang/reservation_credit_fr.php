@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'champ_credit_label' => 'Crédit',
+	'champ_email_label' => 'Email',
 
 	// I
 	'icone_creer_reservation_credit' => 'Créer un crédit',
