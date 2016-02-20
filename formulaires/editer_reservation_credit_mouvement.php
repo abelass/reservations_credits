@@ -64,7 +64,10 @@ function formulaires_editer_reservation_credit_mouvement_charger_dist($id_reserv
 
 	$devises = charger_fonction('reservations_devises','inc');
 	$valeurs['devises'] = $devises();
+	$valeurs['id_reservation_credit'] = _request('id_reservation_credit') ? _request('id_reservation_credit') : $valeurs['id_reservation_credit'];	
+	$valeurs['date_creation'] = _request('date_creation') ? _request('date_creation') : $valeurs['date_creation'] ? $valeurs['date_creation'] : date('Y-m-d H:i:s');	
 	$valeurs['_hidden'] = '<input type="hidden" name="id_reservations_detail" value="' .$valeurs['id_reservations_detail']. '"/>';
+
 	return $valeurs;
 }
 
