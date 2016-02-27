@@ -57,7 +57,7 @@ function reservations_credits_post_edition($flux) {
         if (!isset($data['id_auteur']) OR !$email = sql_getfetsel('email','spip_auteurs','id_auteur =' . $data['id_auteur'])) $email = $data['email'];
 
         if (isset($data['code_devise'])) set_request('devise',$data['code_devise']);
-        set_request('email',$email ) ;
+        set_request('email',$email );
         set_request('id_reservations_detail',$data['id_reservations_detail']) ;
         set_request('descriptif',_T('reservation_credit_mouvement:mouvement_evenement_' . $statut,array('titre'=>$data['descriptif'])));
 

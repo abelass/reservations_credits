@@ -24,5 +24,15 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function presta_credit_call_response_dist($config, $response=null){
 
 	include_spip('inc/bank');
+	
+	$action = charger_fonction('editer_objet', 'action');
+	
+	$action('new', 'reservation_credit_mouvement',$set);
+	
+	$set = array(
+		'type' => 'debit',
+		'email' => _request('email_client'),
+	)
+	
 	return bank_simple_call_response($config, $response);
 }
