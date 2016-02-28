@@ -47,6 +47,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
     'field' => array(
       "id_reservation_credit_mouvement" => "bigint(21) NOT NULL",
       "id_reservation_credit" => "int(11) NOT NULL DEFAULT 0",
+       "id_reservation" => "int(11) NOT NULL DEFAULT 0",     
       "id_reservations_detail" => "int(11) NOT NULL DEFAULT 0",
       "descriptif" => "text NOT NULL DEFAULT ''",
       "type" => "varchar(6) NOT NULL DEFAULT ''",
@@ -59,12 +60,14 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       "PRIMARY KEY" => "id_reservation_credit_mouvement",
       "KEY id_reservation_credit" => "id_reservation_credit",
       "KEY id_reservations_detail" => "id_reservations_detail",
+      "KEY id_reservation" => "id_reservation",      
       "KEY type" => "type",
       ),
     'titre' => "descriptif AS titre, '' AS lang",
     'date' => "date_creation",
     'champs_editables' => array(
       'id_reservation_credit',
+      'id_reservation',      
       'id_reservations_detail',
       'descriptif',
       'type',
@@ -73,6 +76,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
       'devise'
     ),
     'champs_versionnes' => array(
+      'id_reservation',    
       'id_reservations_detail',
       'reservation_credit',
       'descriptif',
@@ -87,6 +91,7 @@ function reservations_credits_declarer_tables_objets_sql($tables) {
     ),
     'tables_jointures' => array(
       'id_reservation_credit',
+      'id_reservation',
       'id_reservations_detail',
     ),
   );

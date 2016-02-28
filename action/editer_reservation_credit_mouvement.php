@@ -46,9 +46,10 @@ function reservation_credit_mouvement_modifier($id, $set=null) {
 		$white = $desc['champs_editables'];
 	}
 	// Si il n'y pas encore de compte crédit pour l'email en question, on le crée
-	$email = _request('email');
-	$id_reservation_credit = _request('id_reservation_credit');
-	if (!$id_reservation_credit ) {
+	$id_reservation_credit = _request('id_reservation_credit') ? _request('id_reservation_credit') : (isset($set['id_reservation_credit']) ? $set['id_reservation_credit'] : '');
+	$email = _request('email') ? _request('email') : (isset($set['email']) ? $set['email'] : '');
+
+	if (!$id_reservation_credit) {
 		if (!$id_reservation_credit = sql_getfetsel('id_reservation_credit','spip_reservation_credits','email = '.sql_quote($email))){
 		$action = charger_fonction('editer_objet', 'action');
 		$reservation_credit = $action('new', 'reservation_credit');

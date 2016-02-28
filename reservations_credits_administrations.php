@@ -30,7 +30,25 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function reservations_credits_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 
-	$maj['create'] = array(array('maj_tables', array('spip_reservation_credit_mouvements', 'spip_reservation_credits')));
+	$maj['create'] = array(
+		array('maj_tables',
+			array(
+				'spip_reservation_credit_mouvements',
+				'spip_reservation_credits'
+			)
+		)
+	);
+	$maj['1.1.0'] = array(
+		array(
+			'maj_tables',
+			array('spip_reservation_credit_mouvements')
+		),
+		array(
+			'sql_alter',
+			'TABLE spip_reservation_credit_mouvements ADD INDEX `id_reservation` (`id_reservation`)'
+		)
+	);
+
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);

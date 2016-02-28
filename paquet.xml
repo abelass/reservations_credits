@@ -6,7 +6,7 @@
   compatibilite="[3.0.20;3.0.*]"
   logo="prive/themes/spip/images/reservations_credits-64.png"
   documentation=""
-  schema="1.0.1"
+  schema="1.1.0"
 >
 
   <nom>Réseŕvations Crédits</nom>
