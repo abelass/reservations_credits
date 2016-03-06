@@ -128,7 +128,9 @@ function reservations_credits_bank_traiter_reglement($flux){
 		$id_transaction = $flux['args']['id_transaction']
 		and $transaction = sql_fetsel("*","spip_transactions","id_transaction=".intval($id_transaction))
 		and $id_reservation = $transaction['id_reservation']
+		and $credit = _request('credit')
 	){
+	
 		$montant_reservations_detail_total = _request('montant_reservations_detail_total') ? _request('montant_reservations_detail_total') : array();
 		
 		$paiement_detail = array();
