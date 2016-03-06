@@ -114,3 +114,62 @@ function reservations_credits_reservation_evenement_menu_admin($flux) {
 
   return $flux;
 }
+
+/**
+ * Déduire le montant payé des crédits
+ * 
+ * @pipeline bank_traiter_reglement
+ * @param array $flux
+ * @return array mixed
+ */
+function reservations_credits_bank_traiter_reglement($flux){
+	// Si on est dans le bon cas d'un paiement de reservation et qu'il y a un id_reservation et que la reservation existe toujours
+	if (
+		$id_transaction = $flux['args']['id_transaction']
+		and $transaction = sql_fetsel("*","spip_transactions","id_transaction=".intval($id_transaction))
+		and $id_reservation = $transaction['id_reservation']
+	){
+		$montant_reservations_detail_total = _request('montant_reservations_detail_total') ? _request('montant_reservations_detail_total') : array();
+		
+		$paiement_detail = array();
+		foreach(array_keys($montant_reservations_detail_total) AS $id_reservation_detail ) {
+			$paiement_detail[$id_reservation_detail] = _request('montant_reservations_detail_' . $id_reservation_detail);
+		}
+		
+		if (!$montant = array_sum($paiement_detail)){
+			$montant = $transaction['montant_regle'];
+		}
+		elseif (is_array($montant)) {
+			$montant= array_sum($montant);
+		}
+		
+	// Enregistrer un mouvement crédit
+	$id_reservation = _request('id_reservation');
+
+	$action = charger_fonction('editer_objet', 'action');
+	
+	$donnees = sql_fetsel('spip_reservations_details.devise,reference,email,id_auteur', 'spip_reservations LEFT JOIN spip_reservations_details USING (id_reservation)', 'spip_reservations.id_reservation=' . $id_reservation);
+	if (!$email = $donnees['email']) {
+		$email = sql_getfetsel('email', 'spip_auteurs', 'id_auteur=' . $donnees['id_auteur']);
+	}
+
+	$reference= $donnes['reference'];
+
+	$set = array(
+		'type' => 'debit',
+		'email' => $email,
+		'descriptif' => _T('reservation_bank:paiement_reservation', array(
+				'id_reservation' => $id_reservation
+				)
+			),
+		'id_reservation' => $id_reservation,
+		'montant' => $montant,
+		'devise' => $donnees['devise'],
+	);
+
+	$action('new', 'reservation_credit_mouvement',$set);
+	
+	}
+
+	return $flux;
+}
