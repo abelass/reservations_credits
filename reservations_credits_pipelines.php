@@ -160,8 +160,9 @@ function reservations_credits_bank_traiter_reglement($flux) {
 				'type' => 'debit',
 				'email' => $email,
 				'descriptif' => _T ( 'reservation_bank:paiement_reservation', array (
-						'id_reservation' => $id_reservation 
-				) ),
+					'id_reservation' => $id_reservation 
+					) 
+				),
 				'id_reservation' => $id_reservation,
 				'montant' => $montant,
 				'devise' => $donnees ['devise'] 
