@@ -16,7 +16,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * Appelle toutes les fonctions de modification d'un objet
  * $err est un message d'erreur eventuelle
  *
- * @param string 'spip_reservation_credit_mouvement'
  * @param int $id
  * @param array|null $set
  * @return mixed|string
