@@ -48,6 +48,18 @@ function reservations_credits_upgrade($nom_meta_base_version, $version_cible) {
 			'TABLE spip_reservation_credit_mouvements ADD INDEX `id_reservation` (`id_reservation`)'
 		)
 	);
+	
+	$maj['1.1.1'] = array(
+		array(
+			'maj_tables',
+			array('spip_reservation_credit_mouvements')
+		),
+		array(
+			'sql_alter',
+			'TABLE spip_reservation_credit_mouvements ADD INDEX `id_objet` (`id_objet`)',
+			'TABLE spip_reservation_credit_mouvements ADD INDEX `objet` (`objet`)',
+		),
+	);
 
 
 	include_spip('base/upgrade');
