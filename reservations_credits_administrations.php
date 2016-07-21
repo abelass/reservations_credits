@@ -79,10 +79,6 @@ function reservations_credits_upgrade($nom_meta_base_version, $version_cible) {
  * @return void
 **/
 function reservations_credits_vider_tables($nom_meta_base_version) {
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# sql_drop_table("spip_xx");
-	# sql_drop_table("spip_xx_liens");
 
 	sql_drop_table("spip_reservation_credit_mouvements");
 	sql_drop_table("spip_reservation_credits");
@@ -94,5 +90,3 @@ function reservations_credits_vider_tables($nom_meta_base_version) {
 
 	effacer_meta($nom_meta_base_version);
 }
-
-?>
