@@ -96,7 +96,8 @@ function reservation_credit_mouvement_modifier($id, $set=null) {
 	$err = objet_instituer('reservation_credit_mouvement', $id, $c);
 
 	// Actualiser le montant de crédit
-	$sql = sql_select('montant,type,devise','spip_reservation_credit_mouvements','id_reservation_credit=' . $id_reservation_credit);
+	$sql = sql_select('montant,type,devise','spip_reservation_credit_mouvements',
+			'id_reservation_credit=' . $id_reservation_credit);
 
 	$montant = array();
 	while ($data = sql_fetch($sql)) {
