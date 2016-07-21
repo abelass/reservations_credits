@@ -8,6 +8,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'ajouter_lien_reservation_credit' => 'Ajouter ce crédit',
+	
+	//
+	'bouton_enregistrer_reglement_credit' => 'Régler avec un crédit',
 
 	// C
 	'champ_credit_label' => 'Crédit',
@@ -18,6 +21,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'icone_modifier_reservation_credit' => 'Modifier ce crédit',
 	'info_1_reservation_credit' => 'Un crédit',
 	'info_aucun_reservation_credit' => 'Aucun crédit',
+	'info_credit_imprimer' => 'Vous avez ’Régler par chèque’.
+
+Transaction : #@transaction@
+_ Montant : @montant@',
 	'info_nb_reservation_credits' => '@nb@ crédits',
 	'info_reservation_credits_auteur' => 'Les crédits de cet auteur',
 	'info_virement' => 'Vous pouvez payer par virement bancaire.

@@ -12,6 +12,7 @@
 ]#CACHE{0}
 <BOUCLE_trans(TRANSACTIONS){id_transaction}{transaction_hash}>
 	<BOUCLE_credit(RESERVATION_CREDITS){email == #AUTEUR}>
+	#SET{devise,EUR}
 		<BOUCLE_reservations_detail(RESERVATIONS_DETAILS){id_reservation}{tout}{0,1}>
 		#SET{devise,#DEVISE}
 		</BOUCLE_reservations_detail>
@@ -25,7 +26,7 @@
 			<:reservation_credit:info_credit_imprimer{montant=#GET{montant},transaction=#GET{transaction},ordre=#GET{ordre}}|propre:>
 	
 			<div class='boutons'>
-			[(#BOUTON_ACTION{<:bank:bouton_enregistrer_reglement_cheque:>,#ENV*{action}})]
+			[(#BOUTON_ACTION{<:reservation_credit:bouton_enregistrer_reglement_credit:>,#ENV*{action}})]
 			</div>
 	
 		]
