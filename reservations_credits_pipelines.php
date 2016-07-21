@@ -45,7 +45,18 @@ function reservations_credits_post_edition($flux) {
 			set_request('type', $type);
 			$action = charger_fonction('editer_objet', 'action');
 			if (test_plugin_actif('prix_objets'))
-				$sql = sql_select('id_reservations_detail, id_auteur, email, spip_reservations_details.prix_ht, spip_reservations_details.prix, spip_reservations_details.taxe,descriptif,code_devise', 'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation) LEFT JOIN spip_prix_objets USING (id_prix_objet)', 'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
+				$sql = sql_select(
+						'id_reservations_detail,
+							id_auteur,
+							email,
+							spip_reservations_details.prix_ht,
+							spip_reservations_details.prix,
+							spip_reservations_details.taxe,
+							descriptif,code_devise',
+						'spip_reservations_details 
+							LEFT JOIN spip_reservations USING (id_reservation) 
+							LEFT JOIN spip_prix_objets USING (id_prix_objet)',
+						'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
 			else
 				$sql = sql_select('id_reservations_detail, id_auteur, email, prix_ht, prix, taxe,descriptif', 'spip_reservations_details LEFT JOIN spip_reservations USING (id_reservation)', 'id_evenement=' . $flux['args']['id_objet'] . ' AND spip_reservations_details.statut="accepte"');
 			
