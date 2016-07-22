@@ -4,17 +4,18 @@ if (! defined ( '_ECRIRE_INC_VERSION' ))
 	return;
 
 $GLOBALS [$GLOBALS ['idx_lang']] = array(
-	
+
 	// A
+	'acompte_paye_par_credit' => 'Acompte payé avec vos crédits',
 	'ajouter_lien_reservation_credit' => 'Ajouter ce crédit',
-	
+
 	//
 	'bouton_enregistrer_reglement_credit' => 'Régler avec mes crédits',
-	
+
 	// C
 	'champ_credit_label' => 'Crédit',
 	'champ_email_label' => 'Email',
-	
+
 	// I
 	'icone_creer_reservation_credit' => 'Créer un crédit',
 	'icone_modifier_reservation_credit' => 'Modifier ce crédit',
@@ -32,14 +33,14 @@ Les instructions concernant l’établissement du virement seront fournies aprè
 Transaction : #@transaction@
 _ Montant : @montant@
 ',
-	
+
 	// P
 	'payer_par_credit' => 'Payer avec mes crédits',
-	
+
 	// R
 	'retirer_lien_reservation_credit' => 'Retirer ce crédit',
 	'retirer_tous_liens_reservation_credits' => 'Retirer tous les crédits',
-	
+
 	// T
 	'texte_ajouter_reservation_credit' => 'Ajouter un crédit',
 	'texte_changer_statut_reservation_credit' => 'Ce crédit est :',
@@ -50,7 +51,7 @@ _ Montant : @montant@
 	'titre_logo_reservation_credit' => 'Logo de ce crédit',
 	'titre_reservation_credit' => 'Crédit',
 	'titre_reservation_credits' => 'Crédits',
-	'titre_reservation_credits_rubrique' => 'Crédits de la rubrique' 
+	'titre_reservation_credits_rubrique' => 'Crédits de la rubrique'
 );
 
 ?>

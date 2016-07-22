@@ -23,13 +23,20 @@
 	#SET{montant,#MONTANT|prix_formater_devise{#GET{devise}}|wrap{'<strong>'}}
 	#SET{transaction,#ID_TRANSACTION|wrap{'<strong>'}}
 	#SET{credit,#GET{credit}|prix_formater_devise{#GET{devise}}|wrap{'<strong>'}}
-	<p class="titre h4"><:reservation_credit:payer_par_credit:></p>
-	<p><:bank:info_mode_reglement_enregistre:> <:bank:confirme_reglement_attente:></p>
-	<:bank:info_cheque_envoyer{montant=#GET{montant},transaction=#GET{transaction},ordre=#GET{ordre}}|propre:>
-	<:bank:info_cheque_envoyer_adresse|propre:>
-	<p>
-
-	</p>
-	[<p class="small">(#ENV{config/notice,''}|propre|PtoBR)</p>]
+	<p class="titre h4"><:reservation_credit:acompte_paye_par_credit:></p>
+	
+	[(#ID_RESERVATION|?{
+		#SET{objet,reservation}
+		,
+		[(#ID_COMMANDE|oui)#SET{objet,commande}]
+	})]
+	[(#GET{objet}|oui)
+		<p>
+			<INCLURE{fond=inclure/paiement_#GET{objet},
+				id_reservation=#ID_RESERVATION,
+				id_commande=#ID_COMMANDE,
+				cacher_paiement_public=''}/>
+		</p>
+	]
 </div>
 </BOUCLE_trans>
