@@ -10,20 +10,28 @@
  *
  */
 ]#CACHE{0}
+#SET{devise,EUR}
 <BOUCLE_trans(TRANSACTIONS){id_transaction}{transaction_hash}>
 	<BOUCLE_credit(RESERVATION_CREDITS){email == #AUTEUR}>
-	#SET{devise,EUR}
 		<BOUCLE_reservations_detail(RESERVATIONS_DETAILS){id_reservation}{tout}{0,1}>
 		#SET{devise,#DEVISE}
 		</BOUCLE_reservations_detail>
-	[(#CREDIT|credit_client{'',#GET{devise}}|>{0}|oui)
+			#SET{credit,#CREDIT|credit_client{'',#GET{devise}}}
+	</BOUCLE_credit>
+
+	[(#GET{credit}|>{0}|oui)
 	<div class="payer_mode payer_credit payer_acte">
 		<p class="titre h4"><:reservation_credit:payer_par_credit:></p>
 		[(#AUTORISER{encaissercredit,transaction,#ID_TRANSACTION}|et{#REM|test_espace_prive}|non)
-			#SET{ordre,#ENV{config/ordre,#NOM_SITE_SPIP}|wrap{'<b>'}}
-			#SET{montant,#MONTANT|affiche_monnaie|wrap{'<b>'}}
-			#SET{transaction,#ID_TRANSACTION|wrap{'<b>'}}
-			<:reservation_credit:info_credit_imprimer{montant=#GET{montant},transaction=#GET{transaction},ordre=#GET{ordre}}|propre:>
+			#SET{ordre,#ENV{config/ordre,#NOM_SITE_SPIP}|wrap{'<strong>'}}
+			#SET{montant,#MONTANT|prix_formater_devise{#GET{devise}}|wrap{'<strong>'}}
+			#SET{transaction,#ID_TRANSACTION|wrap{'<strong>'}}
+			#SET{credit,#GET{credit}|prix_formater_devise{#GET{devise}}|wrap{'<strong>'}}
+			<:reservation_credit:info_credit_imprimer{
+				montant=#GET{montant},
+				transaction=#GET{transaction},
+				credit=#GET{credit},
+				ordre=#GET{ordre}}|propre:>
 	
 			<div class='boutons'>
 			[(#BOUTON_ACTION{<:reservation_credit:bouton_enregistrer_reglement_credit:>,#ENV*{action}})]
@@ -36,5 +44,4 @@
 			</div>
 		]
 	</div>]
-	</BOUCLE_credit>
 </BOUCLE_trans>
