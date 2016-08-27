@@ -124,7 +124,6 @@ function presta_credit_call_response_dist($config, $response = null) {
 			$set['reglee'] = 'par';
 			$statut = 'reglée acompte';
 			$res = 'wait';
-
 		}
 
 		//set_request('montant_paye', $montant_regle);
