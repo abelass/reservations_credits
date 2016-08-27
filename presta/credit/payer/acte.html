@@ -22,7 +22,7 @@
 	#SET{afficher,oui}
 	]
 	[(#REM|test_espace_prive|non)
-		[(#GET{credit}|<={#MONTANT}|oui)
+		[(#GET{credit}|<{#MONTANT}|oui)1
 			#SET{afficher,''}
 		]
 	]

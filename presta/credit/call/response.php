@@ -87,6 +87,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 			and $email = $row['auteur']
 			and $credit = credit_client('', $row['auteur'], $devise)
 			and (intval($credit) >= 0 or floatval($var) >= 0.00)) {
+				
 
 		if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
 			include_spip('inc/reservation_bank');
@@ -94,8 +95,8 @@ function presta_credit_call_response_dist($config, $response = null) {
 		}
 		
 		$paiement_detail = array ();
-		foreach (array_keys($montant_reservations_detail_total) as $id_reservations_detail) {
-			$paiement_detail[$id_reservations_detail] = _request('montant_reservations_detail_' . $id_reservations_detail);
+		foreach ( array_keys($montant_reservations_detail_total) as $id_reservation_detail ) {
+			$paiement_detail[$id_reservation_detail] = _request('montant_reservations_detail_' . $id_reservation_detail);
 		}
 
 		if (!$montant_regle = array_sum($paiement_detail)) {
@@ -118,15 +119,15 @@ function presta_credit_call_response_dist($config, $response = null) {
 		}
 		else {
 			// Le crédit n'est pas suffisant
-			$montant_regle = $credit;
+
 			$set['montant_regle'] = $montant_regle ;
 			$set['statut'] = 'attente';
 			$set['reglee'] = 'par';
 			$statut = 'reglée acompte';
 			$res = 'wait';
+
 		}
 
-		//set_request('montant_paye', $montant_regle);
 		sql_updateq("spip_transactions", $set, "id_transaction=" . intval($id_transaction));
 		spip_log("call_response : id_transaction $id_transaction, $statut", $mode);
 
