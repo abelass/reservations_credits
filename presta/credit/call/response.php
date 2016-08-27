@@ -88,6 +88,11 @@ function presta_credit_call_response_dist($config, $response = null) {
 			and $credit = credit_client('', $row['auteur'], $devise)
 			and (intval($credit) >= 0 or floatval($var) >= 0.00)) {
 
+			if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
+				include_spip('inc/reservation_bank');
+				$montant_reservations_detail_total = montant_reservations_detail_total($id_reservation);
+			}
+
 		if ($montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
 			$paiement_detail = array ();
 			foreach ( array_keys($montant_reservations_detail_total) as $id_reservation_detail ) {
@@ -128,7 +133,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 
 		}
 
-		set_request('montant_paye', $montant_regle);
+		//set_request('montant_paye', $montant_regle);
 		sql_updateq("spip_transactions", $set, "id_transaction=" . intval($id_transaction));
 		spip_log("call_response : id_transaction $id_transaction, $statut", $mode);
 
