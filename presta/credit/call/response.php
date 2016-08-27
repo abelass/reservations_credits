@@ -88,24 +88,18 @@ function presta_credit_call_response_dist($config, $response = null) {
 			and $credit = credit_client('', $row['auteur'], $devise)
 			and (intval($credit) >= 0 or floatval($var) >= 0.00)) {
 
-			if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
-				include_spip('inc/reservation_bank');
-				$montant_reservations_detail_total = montant_reservations_detail_total($id_reservation);
-			}
-
-		if ($montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
-			$paiement_detail = array ();
-			foreach ( array_keys($montant_reservations_detail_total) as $id_reservation_detail ) {
-				$paiement_detail[$id_reservation_detail] = _request('montant_reservations_detail_' . $id_reservation_detail);
-			}
-
-			if (!$montant_regle = array_sum($paiement_detail)) {
-				$montant_regle = $transaction['montant'];
-			}
-		}
-		else{
+		if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
 			include_spip('inc/reservation_bank');
 			$montant_reservations_detail_total = montant_reservations_detail_total($id_reservation);
+		}
+		
+		$paiement_detail = array ();
+		foreach (array_keys($montant_reservations_detail_total) as $id_reservations_detail) {
+			$paiement_detail[$id_reservations_detail] = _request('montant_reservations_detail_' . $id_reservations_detail);
+		}
+
+		if (!$montant_regle = array_sum($paiement_detail)) {
+			$montant_regle = $transaction['montant'];
 		}
 
 		$set = array(
