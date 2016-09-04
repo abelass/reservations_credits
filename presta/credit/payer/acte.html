@@ -11,6 +11,7 @@
  */
 ]#CACHE{0}
 #SET{devise,EUR}
+
 <BOUCLE_trans(TRANSACTIONS){id_transaction}{transaction_hash}>
 	<BOUCLE_credit(RESERVATION_CREDITS){email == #AUTEUR}>
 		<BOUCLE_reservations_detail(RESERVATIONS_DETAILS){id_reservation}{tout}{0,1}>
@@ -19,14 +20,13 @@
 			#SET{credit,#CREDIT|credit_client{'',#GET{devise}}}
 	</BOUCLE_credit>
 	[(#GET{credit}|>{0}|oui)
-	#SET{afficher,oui}
+		#SET{afficher,oui}
 	]
 	[(#REM|test_espace_prive|non)
-		[(#GET{credit}|<{#MONTANT}|oui)1
+		[(#GET{credit}|<{#MONTANT}|oui)
 			#SET{afficher,''}
 		]
 	]
-
 	[(#GET{afficher}|oui)
 	<div class="payer_mode payer_credit payer_acte">
 		<p class="titre h4"><:reservation_credit:payer_par_credit:></p>
