@@ -37,7 +37,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 	$id_transaction = $response['id_transaction'];
 	$transaction_hash = $response['transaction_hash'];
 
-	if (! $row = sql_fetsel('*', 'spip_transactions', 'id_transaction=' . intval($id_transaction))) {
+	if (!$row = sql_fetsel('*', 'spip_transactions', 'id_transaction=' . intval($id_transaction))) {
 		return bank_transaction_invalide($id_transaction, array(
 			'mode' => $mode,
 			'erreur' => "transaction inconnue",
@@ -65,6 +65,19 @@ function presta_credit_call_response_dist($config, $response = null) {
 		$descriptif = _T('reservation_bank:paiement_reservation', array (
 				'id_reservation' => $id_reservation
 			));
+
+		if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
+			include_spip('inc/reservation_bank');
+			$montant_reservations_detail_total = montant_reservations_detail_total($id_reservation);
+		}
+
+
+		$paiement_detail = array ();
+		foreach ( array_keys($montant_reservations_detail_total) as $id_reservations_detail ) {
+			$paiement_detail[$id_reservations_detail] = _request('montant_reservations_detail_' . $id_reservations_detail);
+		}
+		$montant_regle = array_sum($paiement_detail);
+
 	}
 	elseif ($id_commande = $row['id_commande']) {
 		$devise = 'EUR';
@@ -73,6 +86,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 		));
 		$id_objet = $id_commande;
 		$objet = 'commande';
+		$montant_regle = $row['montant'];
 	}
 	else {
 		return bank_transaction_invalide($id_transaction, array(
@@ -87,21 +101,6 @@ function presta_credit_call_response_dist($config, $response = null) {
 			and $email = $row['auteur']
 			and $credit = credit_client('', $row['auteur'], $devise)
 			and (intval($credit) >= 0 or floatval($var) >= 0.00)) {
-				
-
-		if (!$montant_reservations_detail_total = _request('montant_reservations_detail_total')) {
-			include_spip('inc/reservation_bank');
-			$montant_reservations_detail_total = montant_reservations_detail_total($id_reservation);
-		}
-		
-		$paiement_detail = array ();
-		foreach ( array_keys($montant_reservations_detail_total) as $id_reservation_detail ) {
-			$paiement_detail[$id_reservation_detail] = _request('montant_reservations_detail_' . $id_reservation_detail);
-		}
-
-		if (!$montant_regle = array_sum($paiement_detail)) {
-			$montant_regle = $transaction['montant'];
-		}
 
 		$set = array(
 			"mode" => $mode,
@@ -145,7 +144,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 			'id_objet' => $id_objet,
 			'objet' => $objet,
 			'montant' => $montant_regle,
-			'devise' => $donnees['devise']
+			'devise' => $devise
 		);
 
 		$action('new', 'reservation_credit_mouvement', $set);
