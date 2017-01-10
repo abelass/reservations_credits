@@ -55,8 +55,7 @@ function presta_credit_call_response_dist($config, $response = null) {
 	// Obtenir la devise.
 	$auteur = $row['auteur'];
 	include_spip('reservations_credits_fonctions');
-	/*$credit = credit_client('', $row['auteur'], $devise);
-	spip_log("credit : $credit, montant $montant,auteur $auteur", 'credit');*/
+
 	if ($id_reservation = $row['id_reservation']) {
 		$donnees = sql_fetsel('spip_reservations_details.devise,reference,email,id_auteur',
 				'spip_reservations LEFT JOIN spip_reservations_details USING (id_reservation)',
