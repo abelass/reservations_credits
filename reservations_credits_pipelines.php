@@ -129,3 +129,18 @@ function reservations_credits_reservation_evenement_menu_admin($flux) {
 
 	return $flux;
 }
+
+/**
+ * Insertion de css.
+ *
+ * @pipeline header_prive
+ *
+ * @param array $flux
+ *        	Données du pipeline
+ * @return array Données du pipeline
+ */
+function reservations_credits_header_prive($flux) {
+	$css = find_in_path('css/reservations_credits.css');
+	$flux .= "<link rel='stylesheet' type='text/css' media='all' href='$css' />\n";
+	return $flux;
+}
