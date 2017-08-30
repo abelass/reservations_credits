@@ -155,7 +155,6 @@ function reservations_credits_header_prive($flux) {
  * @return array Données du pipeline
  */
 
-
 function reservations_credits_reservation_evenement_objets_navigation($flux) {
 
 	$flux['data']['reservation_credits'] = array(
