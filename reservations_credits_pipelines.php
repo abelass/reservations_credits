@@ -146,9 +146,9 @@ function reservations_credits_header_prive($flux) {
 }
 
 /**
- * Ajouter les configurations dans celle de réservation événements.
+ * Ajouter une entré au menu de navigation de résrvation événement.
  *
- * @pipeline reservation_evenement_objets_configuration
+ * @pipeline reservation_evenement_objets_navigation
  *
  * @param array $flux
  *        	Données du pipeline
