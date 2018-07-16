@@ -23,7 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'icone_modifier_reservation_credit' => 'Modifier ce crédit',
 	'info_1_reservation_credit' => 'Un crédit',
 	'info_aucun_reservation_credit' => 'Aucun crédit',
-	'info_credit_imprimer' => 'Vous pouvez payez en utilisant vos Crédits qui s’élèvent actuellement à @credit@ en cliquant us ’Régler avec mes credits’.
+	'info_credit_imprimer' => 'Vous pouvez payez en utilisant vos crédits qui s’élèvent actuellement à @credit@ en cliquant us ’Régler avec mes credits’.
 
 Transaction : #@transaction@
 _ Montant : @montant@',
